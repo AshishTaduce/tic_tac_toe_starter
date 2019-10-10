@@ -70,3 +70,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  fonts:
+     - family: Proxim Nova
+       fonts:
+         - asset: assets/fonts/Proxima Nova Soft W03 Semibold.ttf
+
+  assets:
+    - assets/background.jpg
+    - assets/black strawberry.jpg
