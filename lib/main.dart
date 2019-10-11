@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -13,11 +14,18 @@ class TicTacToePage extends StatefulWidget {
   _TicTacToePageState createState() => _TicTacToePageState();
 }
 
+enum Choice {
+  cross,
+  circle,
+}
+
 class _TicTacToePageState extends State<TicTacToePage> {
 
   @override
 
   Widget build(BuildContext context) {
+
+
     var textHeight = MediaQuery.of(context).size.height * 0.10;
 
     return Scaffold(
@@ -90,10 +98,11 @@ class _TicTacToePageState extends State<TicTacToePage> {
 }
 
 class TicTacRow extends StatelessWidget {
-  const TicTacRow({
-    Key key,
-  }) : super(key: key);
-
+final Choice choice;
+final Function tapCallback;
+final Widget child;
+  TicTacRow(
+      {this.child, this.tapCallback, this.choice});
   @override
 
   Widget build(BuildContext context) {
@@ -103,20 +112,30 @@ class TicTacRow extends StatelessWidget {
       children: <Widget>[
         Expanded(
           flex: 1,
-          child: Container(
-            margin: EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              color: Colors.white.withAlpha(150),
-              borderRadius: BorderRadius.all(Radius.circular(12),),),
+          child: GestureDetector(
+            onTap: tapCallback,
+            child: Container(
+              margin: EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: Colors.white.withAlpha(150),
+                borderRadius: BorderRadius.all(Radius.circular(12),),
+              ),
+                child: Icon( choice == Choice.circle
+                        ?
+                        FontAwesomeIcons.circle: FontAwesomeIcons.check,)
+                    ),
           ),
         ),
         Expanded(
           flex: 1,
-          child: Container(
-            margin: EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              color: Colors.white.withAlpha(150),
-              borderRadius: BorderRadius.all(Radius.circular(12),),),
+          child: GestureDetector(
+            onTap: tapCallback,
+            child: Container(
+              margin: EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: Colors.white.withAlpha(150),
+                borderRadius: BorderRadius.all(Radius.circular(12),),),
+            ),
           ),
         ),
         Expanded(
